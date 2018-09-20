@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Use this area to provide additional information.</p>
+
+<div id="coffee"></div>    
+
+@section scripts
+{ 
+    <script>    
+    
+        $.ajax({
+
+            url: "http://localhost:55931/api/coffee/",
+            type: "Get",
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    $("#coffee").append("<p>Coffee: " + data[i].Name + " " + data[i].Volume + "</p>")
+                }
+            },
+            error: function (msg) { alert(msg); }
+
+        });
+    
+    
+    </script>
+}
